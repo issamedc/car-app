@@ -94,18 +94,47 @@ public class Dealership
             Car carOutput = cars.get(carToPurchaseInteger - 1);
             System.out.println("You have chosen " + carOutput);
             deleteLine(carOutput);
-        } else System.err.println("You must enter a valid number that matches a car.");
+        }
+        else System.err.println("You must enter a valid number that matches a car.");
 
     }
 
     public static void sellCar()
     {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("You have chosen to sell a car. Please enter the year of your vehicle: ");
+        int yearInput = scanner.nextInt();
+
+        System.out.println("Please enter the make of your vehicle: ");
+        String makeInput = scanner.next();
+
+        System.out.println("Please enter the model of your vehicle: ");
+        String modelInput = scanner.next();
+
+        System.out.println("Please enter the price of your vehicle: ");
+        int priceInput = scanner.nextInt();
+
+        System.out.println("Please enter the mileage of your vehicle: ");
+        int mileageInput = scanner.nextInt();
+
+
+        try
+        {
+            String fileName = "output.txt";
+            FileWriter writer = new FileWriter(fileName, true);
+            writer.write("\n" + yearInput + " " + makeInput + " " + modelInput + " " + priceInput + " " + mileageInput);
+            writer.close();
+
+        } catch (IOException e)
+        {
+            System.err.println(e.getMessage());
+        }
+
     }
 
     public static void deleteLine(Car carToRemove)
     {
-        //take the car array list that is given and if a car equals the car we want to delete we will remove it from the array list
-        //,and then we will take that array list, and we will overwrite the output.txt file with the new arraylist.
         try
         {
             cars.remove(carToRemove);
